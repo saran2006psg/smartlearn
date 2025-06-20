@@ -1,0 +1,78 @@
+{
+  "common": {
+    "welcome": "خوش آمدید",
+    "loading": "لوڈ ہو رہا ہے...",
+    "error": "کچھ غلط ہوا ہے",
+    "save": "محفوظ کریں",
+    "cancel": "منسوخ کریں",
+    "delete": "حذف کریں",
+    "edit": "ترمیم کریں",
+    "view": "دیکھیں",
+    "back": "واپس",
+    "next": "اگلا",
+    "previous": "پچھلا",
+    "search": "تلاش کریں",
+    "filter": "فلٹر",
+    "sort": "ترتیب دیں",
+    "settings": "سیٹنگز",
+    "profile": "پروفائل",
+    "logout": "لاگ آؤٹ"
+  },
+  "navigation": {
+    "dashboard": "ڈیش بورڈ",
+    "lessons": "اسباق",
+    "progress": "پیش قدمی",
+    "translation": "ترجمہ",
+    "writing": "تحریری پیڈ",
+    "analytics": "تجزیات",
+    "students": "طلباء",
+    "reports": "رپورٹس"
+  },
+  "dashboard": {
+    "welcome_message": "وانی پلس میں خوش آمدید",
+    "lessons_completed": "مکمل شدہ اسباق",
+    "hours_learned": "سیکھے گئے گھنٹے",
+    "current_streak": "موجودہ تسلسل",
+    "achievements": "کامیابیاں",
+    "recent_activity": "حالیہ سرگرمی",
+    "continue_learning": "سیکھنا جاری رکھیں"
+  },
+  "lessons": {
+    "categories": {
+      "math": "ریاضی",
+      "science": "سائنس",
+      "alphabets": "حروف تہجی",
+      "numbers": "اعداد",
+      "sentences": "جملے"
+    },
+    "levels": {
+      "beginner": "ابتدائی",
+      "intermediate": "درمیانی",
+      "advanced": "اعلیٰ درجے کا"
+    },
+    "start_lesson": "سبق شروع کریں",
+    "resume": "جاری رکھیں",
+    "completed": "مکمل"
+  },
+  "translation": {
+    "title": "متن سے ISL میں ترجمہ",
+    "input_placeholder": "ISL میں ترجمہ کے لیے متن درج کریں",
+    "translate": "ترجمہ کریں",
+    "speak": "بولیں",
+    "clear": "صاف کریں",
+    "history": "ترجمہ کی تاریخ"
+  },
+  "writing": {
+    "title": "تحریری مشق",
+    "instructions": "تحریری مشق کے لیے اپنی انگلی یا اسٹائلس استعمال کریں",
+    "clear_canvas": "صاف کریں",
+    "save_writing": "محفوظ کریں",
+    "recognize": "متن کو پہچانیں"
+  },
+  "accessibility": {
+    "high_contrast": "زیادہ کنٹراسٹ موڈ",
+    "font_size": "فونٹ کا سائز",
+    "screen_reader": "اسکرین ریڈر مطابقت پذیر",
+    "keyboard_navigation": "کی بورڈ نیویگیشن فعال"
+  }
+}

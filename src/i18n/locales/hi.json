@@ -1,0 +1,78 @@
+{
+  "common": {
+    "welcome": "स्वागत है",
+    "loading": "लोड हो रहा है...",
+    "error": "कुछ गलत हुआ है",
+    "save": "सेव करें",
+    "cancel": "रद्द करें",
+    "delete": "हटाएं",
+    "edit": "संपादित करें",
+    "view": "देखें",
+    "back": "वापस",
+    "next": "अगला",
+    "previous": "पिछला",
+    "search": "खोजें",
+    "filter": "फिल्टर",
+    "sort": "क्रमबद्ध करें",
+    "settings": "सेटिंग्स",
+    "profile": "प्रोफाइल",
+    "logout": "लॉग आउट"
+  },
+  "navigation": {
+    "dashboard": "डैशबोर्ड",
+    "lessons": "पाठ",
+    "progress": "प्रगति",
+    "translation": "अनुवाद",
+    "writing": "लेखन पैड",
+    "analytics": "विश्लेषण",
+    "students": "छात्र",
+    "reports": "रिपोर्ट"
+  },
+  "dashboard": {
+    "welcome_message": "वाणीप्लस में आपका स्वागत है",
+    "lessons_completed": "पूरे हुए पाठ",
+    "hours_learned": "सीखे गए घंटे",
+    "current_streak": "वर्तमान लकीर",
+    "achievements": "उपलब्धियां",
+    "recent_activity": "हाल की गतिविधि",
+    "continue_learning": "सीखना जारी रखें"
+  },
+  "lessons": {
+    "categories": {
+      "math": "गणित",
+      "science": "विज्ञान",
+      "alphabets": "वर्णमाला",
+      "numbers": "संख्या",
+      "sentences": "वाक्य"
+    },
+    "levels": {
+      "beginner": "शुरुआती",
+      "intermediate": "मध्यम",
+      "advanced": "उन्नत"
+    },
+    "start_lesson": "पाठ शुरू करें",
+    "resume": "जारी रखें",
+    "completed": "पूर्ण"
+  },
+  "translation": {
+    "title": "टेक्स्ट से ISL अनुवाद",
+    "input_placeholder": "ISL में अनुवाद के लिए टेक्स्ट दर्ज करें",
+    "translate": "अनुवाद करें",
+    "speak": "बोलें",
+    "clear": "साफ करें",
+    "history": "अनुवाद इतिहास"
+  },
+  "writing": {
+    "title": "लेखन अभ्यास",
+    "instructions": "लिखने का अभ्यास करने के लिए अपनी उंगली या स्टाइलस का उपयोग करें",
+    "clear_canvas": "साफ करें",
+    "save_writing": "सेव करें",
+    "recognize": "टेक्स्ट पहचानें"
+  },
+  "accessibility": {
+    "high_contrast": "उच्च कंट्रास्ट मोड",
+    "font_size": "फ़ॉन्ट आकार",
+    "screen_reader": "स्क्रीन रीडर संगत",
+    "keyboard_navigation": "कीबोर्ड नेवीगेशन सक्षम"
+  }
+}

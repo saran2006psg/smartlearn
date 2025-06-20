@@ -1,0 +1,78 @@
+{
+  "common": {
+    "welcome": "ಸ್ವಾಗತ",
+    "loading": "ಲೋಡ್ ಆಗುತ್ತಿದೆ...",
+    "error": "ಏನೋ ತಪ್ಪಾಗಿದೆ",
+    "save": "ಉಳಿಸು",
+    "cancel": "ರದ್ದು ಮಾಡು",
+    "delete": "ಅಳಿಸು",
+    "edit": "ಸಂಪಾದಿಸು",
+    "view": "ನೋಡು",
+    "back": "ಹಿಂದೆ",
+    "next": "ಮುಂದೆ",
+    "previous": "ಹಿಂದಿನ",
+    "search": "ಹುಡುಕು",
+    "filter": "ಫಿಲ್ಟರ್",
+    "sort": "ವಿಂಗಡಿಸು",
+    "settings": "ಸೆಟ್ಟಿಂಗ್‌ಗಳು",
+    "profile": "ಪ್ರೊಫೈಲ್",
+    "logout": "ಲಾಗ್ ಔಟ್"
+  },
+  "navigation": {
+    "dashboard": "ಡ್ಯಾಶ್‌ಬೋರ್ಡ್",
+    "lessons": "ಪಾಠಗಳು",
+    "progress": "ಪ್ರಗತಿ",
+    "translation": "ಅನುವಾದ",
+    "writing": "ಬರವಣಿಗೆಯ ಪ್ಯಾಡ್",
+    "analytics": "ವಿಶ್ಲೇಷಣೆ",
+    "students": "ವಿದ್ಯಾರ್ಥಿಗಳು",
+    "reports": "ವರದಿಗಳು"
+  },
+  "dashboard": {
+    "welcome_message": "ವಾಣಿಪ್ಲಸ್‌ಗೆ ಸ್ವಾಗತ",
+    "lessons_completed": "ಪೂರ್ಣಗೊಂಡ ಪಾಠಗಳು",
+    "hours_learned": "ಕಲಿತ ಗಂಟೆಗಳು",
+    "current_streak": "ಪ್ರಸ್ತುತ ಸರಣಿ",
+    "achievements": "ಸಾಧನೆಗಳು",
+    "recent_activity": "ಇತ್ತೀಚಿನ ಚಟುವಟಿಕೆ",
+    "continue_learning": "ಕಲಿಕೆಯನ್ನು ಮುಂದುವರಿಸಿ"
+  },
+  "lessons": {
+    "categories": {
+      "math": "ಗಣಿತ",
+      "science": "ವಿಜ್ಞಾನ",
+      "alphabets": "ಅಕ್ಷರಗಳು",
+      "numbers": "ಸಂಖ್ಯೆಗಳು",
+      "sentences": "ವಾಕ್ಯಗಳು"
+    },
+    "levels": {
+      "beginner": "ಆರಂಭಿಕ",
+      "intermediate": "ಮಧ್ಯಮ",
+      "advanced": "ಮುಂದುವರಿದ"
+    },
+    "start_lesson": "ಪಾಠ ಪ್ರಾರಂಭಿಸಿ",
+    "resume": "ಮುಂದುವರಿಸಿ",
+    "completed": "ಪೂರ್ಣ"
+  },
+  "translation": {
+    "title": "ಪಠ್ಯದಿಂದ ISL ಅನುವಾದ",
+    "input_placeholder": "ISL ಗೆ ಅನುವಾದಿಸಲು ಪಠ್ಯವನ್ನು ನಮೂದಿಸಿ",
+    "translate": "ಅನುವಾದಿಸಿ",
+    "speak": "ಮಾತನಾಡಿ",
+    "clear": "ತೆರವುಗೊಳಿಸಿ",
+    "history": "ಅನುವಾದ ಇತಿಹಾಸ"
+  },
+  "writing": {
+    "title": "ಬರವಣಿಗೆಯ ಅಭ್ಯಾಸ",
+    "instructions": "ಬರವಣಿಗೆಯ ಅಭ್ಯಾಸಕ್ಕಾಗಿ ನಿಮ್ಮ ಬೆರಳು ಅಥವಾ ಸ್ಟೈಲಸ್ ಬಳಸಿ",
+    "clear_canvas": "ತೆರವುಗೊಳಿಸಿ",
+    "save_writing": "ಉಳಿಸು",
+    "recognize": "ಪಠ್ಯವನ್ನು ಗುರುತಿಸಿ"
+  },
+  "accessibility": {
+    "high_contrast": "ಹೆಚ್ಚಿನ ಕಾಂಟ್ರಾಸ್ಟ್ ಮೋಡ್",
+    "font_size": "ಫಾಂಟ್ ಗಾತ್ರ",
+    "screen_reader": "ಸ್ಕ್ರೀನ್ ರೀಡರ್ ಹೊಂದಾಣಿಕೆ",
+    "keyboard_navigation": "ಕೀಬೋರ್ಡ್ ನ್ಯಾವಿಗೇಶನ್ ಸಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ"
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "common": {
+    "welcome": "સ્વાગત છે",
+    "loading": "લોડ થઈ રહ્યું છે...",
+    "error": "કંઈક ખોટું થયું છે",
+    "save": "સેવ કરો",
+    "cancel": "રદ કરો",
+    "delete": "ડિલીટ કરો",
+    "edit": "સંપાદિત કરો",
+    "view": "જુઓ",
+    "back": "પાછા",
+    "next": "આગલું",
+    "previous": "પહેલાનું",
+    "search": "શોધો",
+    "filter": "ફિલ્ટર",
+    "sort": "ક્રમમાં કરો",
+    "settings": "સેટિંગસ",
+    "profile": "પ્રોફાઇલ",
+    "logout": "લોગ આઉટ"
+  },
+  "navigation": {
+    "dashboard": "ડેશબોર્ડ",
+    "lessons": "પાઠ",
+    "progress": "પ્રગતિ",
+    "translation": "અનુવાદ",
+    "writing": "લેખન પેડ",
+    "analytics": "વિશ્લેષણ",
+    "students": "વિદ્યાર્થીઓ",
+    "reports": "રિપોર્ટ"
+  },
+  "dashboard": {
+    "welcome_message": "વાણીપ્લસમાં આપનું સ્વાગત છે",
+    "lessons_completed": "પૂર્ણ થયેલા પાઠ",
+    "hours_learned": "શીખેલા કલાકો",
+    "current_streak": "વર્તમાન સિક્વન્સ",
+    "achievements": "સિદ્ધિઓ",
+    "recent_activity": "તાજેતરની પ્રવૃત્તિ",
+    "continue_learning": "શિક્ષણ ચાલુ રાખો"
+  },
+  "lessons": {
+    "categories": {
+      "math": "ગણિત",
+      "science": "વિજ્ઞાન",
+      "alphabets": "અક્ષરો",
+      "numbers": "સંખ્યાઓ",
+      "sentences": "વાક્યો"
+    },
+    "levels": {
+      "beginner": "શરૂઆતી",
+      "intermediate": "મધ્યમ",
+      "advanced": "અદ્યતન"
+    },
+    "start_lesson": "પાઠ શરુ કરો",
+    "resume": "ચાલુ રાખો",
+    "completed": "પૂર્ણ"
+  },
+  "translation": {
+    "title": "ટેક્સ્ટ થી ISL અનુવાદ",
+    "input_placeholder": "ISL માં અનુવાદ માટે ટેક્સ્ટ દાખલ કરો",
+    "translate": "અનુવાદ કરો",
+    "speak": "બોલો",
+    "clear": "સાફ કરો",
+    "history": "અનુવાદ ઇતિહાસ"
+  },
+  "writing": {
+    "title": "લેખન અભ્યાસ",
+    "instructions": "લેખનનો અભ્યાસ કરવા માટે તમારી આંગળી અથવા સ્ટાઇલસનો ઉપયોગ કરો",
+    "clear_canvas": "સાફ કરો",
+    "save_writing": "સેવ કરો",
+    "recognize": "ટેક્સ્ટ ઓળખો"
+  },
+  "accessibility": {
+    "high_contrast": "ઉચ્ચ કોન્ટ્રાસ્ટ મોડ",
+    "font_size": "ફોન્ટ સાઇઝ",
+    "screen_reader": "સ્ક્રીન રીડર સુસંગત",
+    "keyboard_navigation": "કીબોર્ડ નેવિગેશન સક્ષમ"
+  }
+}

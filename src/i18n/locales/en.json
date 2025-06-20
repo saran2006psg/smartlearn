@@ -1,0 +1,78 @@
+{
+  "common": {
+    "welcome": "Welcome",
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "view": "View",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "settings": "Settings",
+    "profile": "Profile",
+    "logout": "Logout"
+  },
+  "navigation": {
+    "dashboard": "Dashboard",
+    "lessons": "Lessons",
+    "progress": "Progress",
+    "translation": "Translation",
+    "writing": "Writing Pad",
+    "analytics": "Analytics",
+    "students": "Students",
+    "reports": "Reports"
+  },
+  "dashboard": {
+    "welcome_message": "Welcome to VaaniPlus",
+    "lessons_completed": "Lessons Completed",
+    "hours_learned": "Hours Learned",
+    "current_streak": "Current Streak",
+    "achievements": "Achievements",
+    "recent_activity": "Recent Activity",
+    "continue_learning": "Continue Learning"
+  },
+  "lessons": {
+    "categories": {
+      "math": "Mathematics",
+      "science": "Science",
+      "alphabets": "Alphabets",
+      "numbers": "Numbers",
+      "sentences": "Sentences"
+    },
+    "levels": {
+      "beginner": "Beginner",
+      "intermediate": "Intermediate",
+      "advanced": "Advanced"
+    },
+    "start_lesson": "Start Lesson",
+    "resume": "Resume",
+    "completed": "Completed"
+  },
+  "translation": {
+    "title": "Text to ISL Translation",
+    "input_placeholder": "Enter text to translate to ISL",
+    "translate": "Translate",
+    "speak": "Speak",
+    "clear": "Clear",
+    "history": "Translation History"
+  },
+  "writing": {
+    "title": "Writing Practice",
+    "instructions": "Use your finger or stylus to practice writing",
+    "clear_canvas": "Clear",
+    "save_writing": "Save",
+    "recognize": "Recognize Text"
+  },
+  "accessibility": {
+    "high_contrast": "High Contrast Mode",
+    "font_size": "Font Size",
+    "screen_reader": "Screen Reader Compatible",
+    "keyboard_navigation": "Keyboard Navigation Enabled"
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "common": {
+    "welcome": "স্বাগতম",
+    "loading": "লোড হচ্ছে...",
+    "error": "কিছু ভুল হয়েছে",
+    "save": "সংরক্ষণ করুন",
+    "cancel": "বাতিল",
+    "delete": "মুছুন",
+    "edit": "সম্পাদনা",
+    "view": "দেখুন",
+    "back": "পিছনে",
+    "next": "পরবর্তী",
+    "previous": "পূর্ববর্তী",
+    "search": "খোঁজ করুন",
+    "filter": "ফিল্টার",
+    "sort": "সাজান",
+    "settings": "সেটিংস",
+    "profile": "প্রোফাইল",
+    "logout": "লগ আউট"
+  },
+  "navigation": {
+    "dashboard": "ড্যাশবোর্ড",
+    "lessons": "পাঠ",
+    "progress": "অগ্রগতি",
+    "translation": "অনুবাদ",
+    "writing": "লেখার প্যাড",
+    "analytics": "বিশ্লেষণ",
+    "students": "ছাত্রছাত্রী",
+    "reports": "রিপোর্ট"
+  },
+  "dashboard": {
+    "welcome_message": "বাণীপ্লাসে স্বাগতম",
+    "lessons_completed": "সম্পন্ন পাঠ",
+    "hours_learned": "শেখা ঘন্টা",
+    "current_streak": "বর্তমান ধারা",
+    "achievements": "অর্জন",
+    "recent_activity": "সাম্প্রতিক কার্যকলাপ",
+    "continue_learning": "শেখা চালিয়ে যান"
+  },
+  "lessons": {
+    "categories": {
+      "math": "গণিত",
+      "science": "বিজ্ঞান",
+      "alphabets": "বর্ণমালা",
+      "numbers": "সংখ্যা",
+      "sentences": "বাক্য"
+    },
+    "levels": {
+      "beginner": "প্রাথমিক",
+      "intermediate": "মধ্যম",
+      "advanced": "উন্নত"
+    },
+    "start_lesson": "পাঠ শুরু করুন",
+    "resume": "চালিয়ে যান",
+    "completed": "সম্পন্ন"
+  },
+  "translation": {
+    "title": "টেক্সট থেকে ISL অনুবাদ",
+    "input_placeholder": "ISL এ অনুবাদের জন্য টেক্সট লিখুন",
+    "translate": "অনুবাদ করুন",
+    "speak": "বলুন",
+    "clear": "পরিষ্কার করুন",
+    "history": "অনুবাদের ইতিহাস"
+  },
+  "writing": {
+    "title": "লেখার অনুশীলন",
+    "instructions": "লেখার অনুশীলনের জন্য আপনার আঙুল বা স্টাইলাস ব্যবহার করুন",
+    "clear_canvas": "পরিষ্কার করুন",
+    "save_writing": "সংরক্ষণ করুন",
+    "recognize": "টেক্সট চিনুন"
+  },
+  "accessibility": {
+    "high_contrast": "উচ্চ বৈসাদৃশ্য মোড",
+    "font_size": "ফন্টের আকার",
+    "screen_reader": "স্ক্রিন রিডার সামঞ্জস্যপূর্ণ",
+    "keyboard_navigation": "কীবোর্ড নেভিগেশন সক্রিয়"
+  }
+}

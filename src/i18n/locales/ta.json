@@ -1,0 +1,78 @@
+{
+  "common": {
+    "welcome": "வரவேற்கிறோம்",
+    "loading": "ஏற்றுகிறது...",
+    "error": "ஏதோ தவறு நடந்தது",
+    "save": "சேமிக்கவும்",
+    "cancel": "ரத்து செய்யவும்",
+    "delete": "நீக்கவும்",
+    "edit": "திருத்தவும்",
+    "view": "பார்க்கவும்",
+    "back": "பின்",
+    "next": "அடுத்து",
+    "previous": "முந்தைய",
+    "search": "தேடவும்",
+    "filter": "வடிகட்டவும்",
+    "sort": "வரிசைப்படுத்தவும்",
+    "settings": "அமைப்புகள்",
+    "profile": "சுயவிவரம்",
+    "logout": "வெளியேறு"
+  },
+  "navigation": {
+    "dashboard": "டாஷ்போர்டு",
+    "lessons": "பாடங்கள்",
+    "progress": "முன்னேற்றம்",
+    "translation": "மொழிபெயர்ப்பு",
+    "writing": "எழுதும் பேடு",
+    "analytics": "பகுப்பாய்வு",
+    "students": "மாணவர்கள்",
+    "reports": "அறிக்கைகள்"
+  },
+  "dashboard": {
+    "welcome_message": "வாணிப்லஸில் உங்களை வரவேற்கிறோம்",
+    "lessons_completed": "முடிக்கப்பட்ட பாடங்கள்",
+    "hours_learned": "கற்ற மணிநேரங்கள்",
+    "current_streak": "தற்போதைய தொடர்",
+    "achievements": "சாதனைகள்",
+    "recent_activity": "சமீபத்திய செயல்பாடு",
+    "continue_learning": "கற்றலைத் தொடரவும்"
+  },
+  "lessons": {
+    "categories": {
+      "math": "கணிதம்",
+      "science": "அறிவியல்",
+      "alphabets": "எழுத்துக்கள்",
+      "numbers": "எண்கள்",
+      "sentences": "வாக்கியங்கள்"
+    },
+    "levels": {
+      "beginner": "ஆரம்பநிலை",
+      "intermediate": "நடுத்தர",
+      "advanced": "மேம்பட்ட"
+    },
+    "start_lesson": "பாடம் தொடங்கு",
+    "resume": "தொடரவும்",
+    "completed": "முடிந்தது"
+  },
+  "translation": {
+    "title": "உரையிலிருந்து ISL மொழிபெயர்ப்பு",
+    "input_placeholder": "ISL க்கு மொழிபெயர்க்க உரையை உள்ளிடவும்",
+    "translate": "மொழிபெயர்க்கவும்",
+    "speak": "பேசவும்",
+    "clear": "அழிக்கவும்",
+    "history": "மொழிபெயர்ப்பு வரலாறு"
+  },
+  "writing": {
+    "title": "எழுதும் பயிற்சி",
+    "instructions": "எழுதும் பயிற்சிக்கு உங்கள் விரல் அல்லது ஸ்டைலஸைப் பயன்படுத்தவும்",
+    "clear_canvas": "அழிக்கவும்",
+    "save_writing": "சேமிக்கவும்",
+    "recognize": "உரையை அடையாளம் காணவும்"
+  },
+  "accessibility": {
+    "high_contrast": "உயர் மாறுபாடு பயன்முறை",
+    "font_size": "எழுத்துரு அளவு",
+    "screen_reader": "திரை வாசிப்பான் இணக்கமான",
+    "keyboard_navigation": "விசைப்பலகை வழிசெலுத்தல் இயக்கப்பட்டது"
+  }
+}
