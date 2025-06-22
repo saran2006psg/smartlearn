@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mic, Volume2, RotateCcw, Copy, Save, History } from 'lucide-react';
+import { Mic, Volume2, RotateCcw, Copy, History } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Button } from '../ui/Button';
 import { Input } from '../ui/Input';

@@ -1,8 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { TrendingUp, Award, Target, Calendar, BookOpen, Clock } from 'lucide-react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar, PieChart, Pie, Cell } from 'recharts';
+import { TrendingUp, Award, BookOpen, Clock } from 'lucide-react';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 import { Card } from '../components/ui/Card';
 import { Badge } from '../components/ui/Badge';
 import { DashboardCard } from '../components/dashboard/DashboardCard';

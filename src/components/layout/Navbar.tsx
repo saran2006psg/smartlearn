@@ -17,6 +17,7 @@ import { Button } from '../ui/Button';
 import { useThemeStore } from '../../stores/themeStore';
 import { useLanguageStore } from '../../stores/languageStore';
 import { useAuthStore } from '../../stores/authStore';
+import { Language } from '../../types';
 
 const languages = [
   { code: 'hi', name: 'हिंदी', flag: '🇮🇳' },
@@ -102,7 +103,7 @@ export const Navbar: React.FC = () => {
                     <button
                       key={lang.code}
                       onClick={() => {
-                        setLanguage(lang.code as any);
+                        setLanguage(lang.code as Language);
                         setIsLanguageDropdownOpen(false);
                       }}
                       className={`w-full text-left px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center space-x-3 ${
@@ -207,7 +208,7 @@ export const Navbar: React.FC = () => {
                   {languages.map((lang) => (
                     <button
                       key={lang.code}
-                      onClick={() => setLanguage(lang.code as any)}
+                      onClick={() => setLanguage(lang.code as Language)}
                       className={`text-left p-2 text-sm rounded-lg flex items-center space-x-2 ${
                         language === lang.code 
                           ? 'bg-primary-100 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400' 

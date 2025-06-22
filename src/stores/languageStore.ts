@@ -8,7 +8,7 @@ interface LanguageState {
   isRTL: boolean;
 }
 
-export const useLanguageStore = create<LanguageState>((set, get) => ({
+export const useLanguageStore = create<LanguageState>((set) => ({
   language: 'hi',
   isRTL: false,
   

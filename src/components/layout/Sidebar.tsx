@@ -11,8 +11,7 @@ import {
   BarChart3,
   Users,
   FileText,
-  Award,
-  Settings
+  Award
 } from 'lucide-react';
 import { useAuthStore } from '../../stores/authStore';
 import { useLanguageStore } from '../../stores/languageStore';

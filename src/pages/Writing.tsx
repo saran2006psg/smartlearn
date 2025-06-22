@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { PenTool, Zap, Eye, Save } from 'lucide-react';
+import { PenTool, Eye, Save } from 'lucide-react';
 import { WritingPad } from '../components/writing/WritingPad';
 import { Card } from '../components/ui/Card';
 import { Badge } from '../components/ui/Badge';

@@ -2,13 +2,13 @@ import React, { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { RotateCcw, Save, Eye, Download, Palette } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import CanvasDraw from 'react-canvas-draw';
+import SignatureCanvas from 'react-signature-canvas';
 import { Button } from '../ui/Button';
 import { Card } from '../ui/Card';
 
 export const WritingPad: React.FC = () => {
   const { t } = useTranslation();
-  const canvasRef = useRef<any>(null);
+  const canvasRef = useRef<SignatureCanvas>(null);
   const [brushColor, setBrushColor] = useState('#4F46E5');
   const [brushRadius, setBrushRadius] = useState(3);
   const [recognizedText, setRecognizedText] = useState('');
@@ -34,7 +34,7 @@ export const WritingPad: React.FC = () => {
 
   const saveDrawing = () => {
     if (canvasRef.current) {
-      const dataUrl = canvasRef.current.getDataURL();
+      const dataUrl = canvasRef.current.getTrimmedCanvas().toDataURL('image/png');
       const link = document.createElement('a');
       link.download = 'writing-practice.png';
       link.href = dataUrl;
@@ -63,7 +63,7 @@ export const WritingPad: React.FC = () => {
 
   const exportCanvas = () => {
     if (canvasRef.current) {
-      const dataUrl = canvasRef.current.getDataURL();
+      const dataUrl = canvasRef.current.getTrimmedCanvas().toDataURL('image/png');
       const link = document.createElement('a');
       link.download = `writing-${Date.now()}.png`;
       link.href = dataUrl;
@@ -154,20 +154,20 @@ export const WritingPad: React.FC = () => {
       {/* Canvas */}
       <Card padding="sm">
         <div className="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg overflow-hidden">
-          <CanvasDraw
+          <SignatureCanvas
             ref={canvasRef}
-            brushColor={brushColor}
-            brushRadius={brushRadius}
-            canvasWidth={800}
-            canvasHeight={400}
-            style={{
-              width: '100%',
-              height: '400px',
-              backgroundColor: '#ffffff',
+            penColor={brushColor}
+            dotSize={brushRadius}
+            canvasProps={{
+              width: 800,
+              height: 400,
+              style: {
+                width: '100%',
+                height: '400px',
+                backgroundColor: '#ffffff',
+              },
+              className: 'touch-action-none'
             }}
-            hideGrid={false}
-            gridColor="#f0f0f0"
-            className="touch-action-none"
           />
         </div>
       </Card>

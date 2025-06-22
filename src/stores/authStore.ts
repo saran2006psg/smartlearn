@@ -5,7 +5,7 @@ interface AuthState {
   user: User | null;
   isAuthenticated: boolean;
   isLoading: boolean;
-  login: (email: string, password: string) => Promise<void>;
+  login: (email: string) => Promise<void>;
   logout: () => void;
   updateUser: (updates: Partial<User>) => void;
 }
@@ -26,7 +26,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   isAuthenticated: true,
   isLoading: false,
 
-  login: async (email: string, password: string) => {
+  login: async (email: string) => {
     set({ isLoading: true });
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1000));

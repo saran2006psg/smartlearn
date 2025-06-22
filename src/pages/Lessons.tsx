@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { Search, Filter, BookOpen, Play, CheckCircle } from 'lucide-react';
+import { Search, BookOpen } from 'lucide-react';
 import { LessonCard } from '../components/lessons/LessonCard';
 import { Card } from '../components/ui/Card';
 import { Input } from '../components/ui/Input';
 import { Button } from '../components/ui/Button';
-import { Badge } from '../components/ui/Badge';
 import { Lesson } from '../types';
 
 const mockLessons: Lesson[] = [
