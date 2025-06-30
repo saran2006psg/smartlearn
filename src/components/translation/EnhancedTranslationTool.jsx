@@ -1,461 +1,400 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { 
-  Mic, 
-  Volume2, 
-  RotateCcw, 
-  Copy, 
-  History, 
+  Languages, 
   Play, 
-  Pause,
-  Download,
-  Share,
-  BookOpen
+  Pause, 
+  Volume2, 
+  Download, 
+  Heart, 
+  Share2, 
+  Settings,
+  History,
+  Star,
+  FileText,
+  User
 } from 'lucide-react';
+import apiService from '../../services/api';
 import { useTranslation } from 'react-i18next';
-import { Button } from '../ui/Button';
-import { Input } from '../ui/Input';
-import { Card } from '../ui/Card';
-import { LoadingSpinner, PulseLoader } from '../ui/LoadingSpinner';
-import { ISLAvatar3D } from '../avatar/ISLAvatar3D';
 
-export const EnhancedTranslationTool = () => {
+const EnhancedTranslationTool = () => {
   const { t } = useTranslation();
-  const [inputText, setInputText] = useState('');
-  const [translatedText, setTranslatedText] = useState('');
+  const [text, setText] = useState('');
+  const [sourceLanguage, setSourceLanguage] = useState('en');
+  const [targetLanguage, setTargetLanguage] = useState('isl');
+  const [avatarType, setAvatarType] = useState('default');
   const [isTranslating, setIsTranslating] = useState(false);
-  const [isListening, setIsListening] = useState(false);
+  const [translation, setTranslation] = useState(null);
+  const [avatarUrl, setAvatarUrl] = useState('');
   const [isPlaying, setIsPlaying] = useState(false);
+  const [avatarTypes, setAvatarTypes] = useState([]);
   const [history, setHistory] = useState([]);
-  const [selectedLanguage, setSelectedLanguage] = useState('hi');
-  const [translationSpeed, setTranslationSpeed] = useState('normal');
+  const [showHistory, setShowHistory] = useState(false);
+  const [showSettings, setShowSettings] = useState(false);
 
   const languages = [
-    { code: 'hi', name: 'हिंदी', flag: '🇮🇳' },
     { code: 'en', name: 'English', flag: '🇺🇸' },
-    { code: 'gu', name: 'ગુજરાતી', flag: '🇮🇳' },
-    { code: 'ta', name: 'தமிழ்', flag: '🇮🇳' },
-    { code: 'kn', name: 'ಕನ್ನಡ', flag: '🇮🇳' },
-    { code: 'bn', name: 'বাংলা', flag: '🇮🇳' },
+    { code: 'hi', name: 'Hindi', flag: '🇮🇳' },
+    { code: 'gu', name: 'Gujarati', flag: '🇮🇳' },
+    { code: 'ta', name: 'Tamil', flag: '🇮🇳' },
+    { code: 'kn', name: 'Kannada', flag: '🇮🇳' },
+    { code: 'bn', name: 'Bengali', flag: '🇮🇳' },
+    { code: 'ur', name: 'Urdu', flag: '🇵🇰' },
+    { code: 'isl', name: 'Indian Sign Language', flag: '🤟' }
   ];
 
-  const speeds = [
-    { value: 'slow', label: 'Slow', icon: '🐌' },
-    { value: 'normal', label: 'Normal', icon: '🚶' },
-    { value: 'fast', label: 'Fast', icon: '🏃' },
-  ];
+  useEffect(() => {
+    loadAvatarTypes();
+    loadHistory();
+  }, []);
 
-  const commonPhrases = [
-    { text: 'नमस्ते', translation: 'Hello/Namaste' },
-    { text: 'धन्यवाद', translation: 'Thank you' },
-    { text: 'मेरा नाम है', translation: 'My name is' },
-    { text: 'आप कैसे हैं?', translation: 'How are you?' },
-    { text: 'मुझे समझ नहीं आया', translation: 'I don\'t understand' },
-    { text: 'कृपया मदद करें', translation: 'Please help' },
-  ];
+  const loadAvatarTypes = async () => {
+    try {
+      const response = await apiService.getAvatarTypes();
+      setAvatarTypes(response.avatarTypes);
+    } catch (error) {
+      console.error('Failed to load avatar types:', error);
+    }
+  };
+
+  const loadHistory = async () => {
+    try {
+      const response = await apiService.getTranslationHistory(10);
+      setHistory(response.translations);
+    } catch (error) {
+      console.error('Failed to load history:', error);
+    }
+  };
 
   const handleTranslate = async () => {
-    if (!inputText.trim()) return;
-    
+    if (!text.trim()) return;
+
     setIsTranslating(true);
-    
-    // Simulate translation API call with realistic delay
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    setTranslatedText(`ISL translation for: "${inputText}"`);
-    setHistory(prev => [...prev, { 
-      text: inputText, 
-      translation: `ISL translation for: "${inputText}"`,
-      timestamp: new Date(),
-      language: selectedLanguage 
-    }]);
-    setIsTranslating(false);
-  };
-
-  const handleSpeechToText = () => {
-    setIsListening(true);
-    
-    // Simulate speech recognition
-    setTimeout(() => {
-      const phrases = [
-        'नमस्ते, आप कैसे हैं?',
-        'मुझे ISL सीखना है',
-        'यह बहुत अच्छा है',
-        'धन्यवाद आपका'
-      ];
-      const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
-      setInputText(randomPhrase);
-      setIsListening(false);
-    }, 2000);
-  };
-
-  const handleSpeak = () => {
-    if ('speechSynthesis' in window && inputText) {
-      const utterance = new SpeechSynthesisUtterance(inputText);
-      utterance.lang = selectedLanguage;
-      speechSynthesis.speak(utterance);
+    try {
+      const response = await apiService.translateText(
+        text,
+        sourceLanguage,
+        targetLanguage,
+        avatarType
+      );
+      
+      setTranslation(response.translation);
+      setAvatarUrl(response.avatarUrl);
+      loadHistory(); // Refresh history
+    } catch (error) {
+      console.error('Translation failed:', error);
+    } finally {
+      setIsTranslating(false);
     }
   };
 
-  const playTranslation = () => {
-    setIsPlaying(true);
-    // Simulate playing ISL animation
-    setTimeout(() => setIsPlaying(false), 3000);
-  };
-
-  const clearAll = () => {
-    setInputText('');
-    setTranslatedText('');
-  };
-
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText(inputText);
-  };
-
-  const shareTranslation = () => {
-    if (navigator.share) {
-      navigator.share({
-        title: 'ISL Translation',
-        text: `Original: ${inputText}\nTranslation: ${translatedText}`,
-      });
+  const handleFavorite = async (translationId, isFavorite) => {
+    try {
+      await apiService.toggleTranslationFavorite(translationId, !isFavorite);
+      loadHistory(); // Refresh history
+    } catch (error) {
+      console.error('Failed to toggle favorite:', error);
     }
+  };
+
+  const handleShare = async () => {
+    if (navigator.share && translation) {
+      try {
+        await navigator.share({
+          title: 'SmartLearn Translation',
+          text: `${text} → ${JSON.parse(translation.translated_content).translated}`,
+          url: window.location.href
+        });
+      } catch (error) {
+        console.error('Share failed:', error);
+      }
+    }
+  };
+
+  const handleExport = async () => {
+    try {
+      const response = await apiService.exportTranslations('csv');
+      const blob = new Blob([response], { type: 'text/csv' });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'translations.csv';
+      a.click();
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error('Export failed:', error);
+    }
+  };
+
+  const getLanguageName = (code) => {
+    return languages.find(lang => lang.code === code)?.name || code;
+  };
+
+  const getLanguageFlag = (code) => {
+    return languages.find(lang => lang.code === code)?.flag || '🌐';
   };
 
   return (
-    <div className="space-y-6">
-      {/* Main Translation Interface */}
-      <Card>
-        <div className="space-y-6">
+    <div className="max-w-6xl mx-auto p-6">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="bg-white rounded-2xl shadow-xl overflow-hidden"
+      >
+        {/* Header */}
+        <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-6 text-white">
           <div className="flex items-center justify-between">
-            <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
-              {t('translation.title')}
-            </h2>
-            
-            {/* Language Selector */}
-            <div className="flex items-center space-x-2">
-              <span className="text-sm text-gray-600 dark:text-gray-400">Language:</span>
-              <select
-                value={selectedLanguage}
-                onChange={(e) => setSelectedLanguage(e.target.value)}
-                className="px-3 py-1 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white text-sm"
-              >
-                {languages.map((lang) => (
-                  <option key={lang.code} value={lang.code}>
-                    {lang.flag} {lang.name}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
-          
-          {/* Input Section */}
-          <div className="space-y-4">
-            <Input
-              placeholder={t('translation.input_placeholder')}
-              value={inputText}
-              onChange={(e) => setInputText(e.target.value)}
-              className="text-lg min-h-[60px]"
-              rightIcon={
-                <div className="flex items-center space-x-2">
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={handleSpeechToText}
-                    className={isListening ? 'text-error-500 animate-pulse' : ''}
-                    aria-label="Voice input"
-                  >
-                    <Mic className="h-4 w-4" />
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={handleSpeak}
-                    disabled={!inputText}
-                    aria-label="Speak text"
-                  >
-                    <Volume2 className="h-4 w-4" />
-                  </Button>
-                </div>
-              }
-            />
-            
-            {/* Quick Phrases */}
-            <div className="space-y-2">
-              <span className="text-sm text-gray-600 dark:text-gray-400">Quick phrases:</span>
-              <div className="flex flex-wrap gap-2">
-                {commonPhrases.map((phrase, index) => (
-                  <motion.button
-                    key={index}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    onClick={() => setInputText(phrase.text)}
-                    className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full text-sm hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
-                    title={phrase.translation}
-                  >
-                    {phrase.text}
-                  </motion.button>
-                ))}
+            <div className="flex items-center space-x-3">
+              <Languages className="w-8 h-8" />
+              <div>
+                <h1 className="text-2xl font-bold">SmartLearn Translator</h1>
+                <p className="text-blue-100">Translate with AI-powered avatars</p>
               </div>
             </div>
-            
-            {/* Action Buttons */}
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-3">
-                <Button
-                  onClick={handleTranslate}
-                  loading={isTranslating}
-                  disabled={!inputText.trim()}
-                  className="flex-1 sm:flex-none"
+            <div className="flex space-x-2">
+              <button
+                onClick={() => setShowHistory(!showHistory)}
+                className="p-2 rounded-lg bg-white/20 hover:bg-white/30 transition-colors"
+                title="Translation History"
+              >
+                <History className="w-5 h-5" />
+              </button>
+              <button
+                onClick={() => setShowSettings(!showSettings)}
+                className="p-2 rounded-lg bg-white/20 hover:bg-white/30 transition-colors"
+                title="Settings"
+              >
+                <Settings className="w-5 h-5" />
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 p-6">
+          {/* Input Section */}
+          <div className="space-y-6">
+            {/* Language Selection */}
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  From Language
+                </label>
+                <select
+                  value={sourceLanguage}
+                  onChange={(e) => setSourceLanguage(e.target.value)}
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 >
-                  {isTranslating ? 'Translating...' : t('translation.translate')}
-                </Button>
-                
-                {/* Speed Control */}
-                <div className="flex items-center space-x-1">
-                  {speeds.map((speed) => (
-                    <motion.button
-                      key={speed.value}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      onClick={() => setTranslationSpeed(speed.value)}
-                      className={`px-2 py-1 rounded text-sm ${
-                        translationSpeed === speed.value
-                          ? 'bg-primary-100 text-primary-600 dark:bg-primary-900/20 dark:text-primary-400'
-                          : 'bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-400'
+                  {languages.filter(lang => lang.code !== 'isl').map(lang => (
+                    <option key={lang.code} value={lang.code}>
+                      {lang.flag} {lang.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  To Language
+                </label>
+                <select
+                  value={targetLanguage}
+                  onChange={(e) => setTargetLanguage(e.target.value)}
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                >
+                  {languages.map(lang => (
+                    <option key={lang.code} value={lang.code}>
+                      {lang.flag} {lang.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            {/* Avatar Selection */}
+            {targetLanguage === 'isl' && (
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Avatar Type
+                </label>
+                <div className="grid grid-cols-2 gap-3">
+                  {avatarTypes.map(avatar => (
+                    <button
+                      key={avatar.id}
+                      onClick={() => setAvatarType(avatar.id)}
+                      className={`p-3 rounded-lg border-2 transition-all ${
+                        avatarType === avatar.id
+                          ? 'border-blue-500 bg-blue-50'
+                          : 'border-gray-200 hover:border-gray-300'
                       }`}
-                      title={speed.label}
                     >
-                      {speed.icon}
-                    </motion.button>
+                      <div className="flex items-center space-x-2">
+                        <User className="w-5 h-5" />
+                        <div className="text-left">
+                          <div className="font-medium text-sm">{avatar.name}</div>
+                          <div className="text-xs text-gray-500">{avatar.description}</div>
+                        </div>
+                      </div>
+                    </button>
                   ))}
                 </div>
               </div>
-              
-              <div className="flex items-center space-x-2">
-                <Button variant="outline" onClick={copyToClipboard} disabled={!inputText} size="sm">
-                  <Copy className="h-4 w-4" />
-                </Button>
-                <Button variant="outline" onClick={clearAll} size="sm">
-                  <RotateCcw className="h-4 w-4" />
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </Card>
+            )}
 
-      {/* Translation Output */}
-      <AnimatePresence>
-        {(translatedText || isTranslating) && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="grid grid-cols-1 lg:grid-cols-2 gap-6"
-          >
-            {/* 3D Avatar Display */}
-            <Card>
-              <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100">
-                    3D ISL Avatar
-                  </h3>
-                  <div className="flex items-center space-x-2">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={playTranslation}
-                      disabled={isPlaying || isTranslating}
-                    >
-                      {isPlaying ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
-                      {isPlaying ? 'Playing' : 'Play'}
-                    </Button>
-                    <Button variant="outline" size="sm" onClick={shareTranslation}>
-                      <Share className="h-4 w-4" />
-                    </Button>
+            {/* Text Input */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Enter Text
+              </label>
+              <textarea
+                value={text}
+                onChange={(e) => setText(e.target.value)}
+                placeholder="Type or paste your text here..."
+                className="w-full h-32 p-4 border border-gray-300 rounded-lg resize-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
+            </div>
+
+            {/* Translate Button */}
+            <button
+              onClick={handleTranslate}
+              disabled={!text.trim() || isTranslating}
+              className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4 px-6 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 flex items-center justify-center space-x-2"
+            >
+              {isTranslating ? (
+                <>
+                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                  <span>Translating...</span>
+                </>
+              ) : (
+                <>
+                  <Languages className="w-5 h-5" />
+                  <span>Translate</span>
+                </>
+              )}
+            </button>
+          </div>
+
+          {/* Output Section */}
+          <div className="space-y-6">
+            {translation ? (
+              <>
+                {/* Translation Result */}
+                <div className="bg-gray-50 rounded-lg p-4">
+                  <div className="flex items-center justify-between mb-3">
+                    <h3 className="font-semibold text-gray-800">Translation</h3>
+                    <div className="flex space-x-2">
+                      <button
+                        onClick={() => handleFavorite(translation.id, false)}
+                        className="p-2 rounded-lg hover:bg-gray-200 transition-colors"
+                        title="Add to Favorites"
+                      >
+                        <Heart className="w-4 h-4" />
+                      </button>
+                      <button
+                        onClick={handleShare}
+                        className="p-2 rounded-lg hover:bg-gray-200 transition-colors"
+                        title="Share"
+                      >
+                        <Share2 className="w-4 h-4" />
+                      </button>
+                    </div>
+                  </div>
+                  <div className="text-lg text-gray-800 mb-2">
+                    {JSON.parse(translation.translated_content).translated}
+                  </div>
+                  <div className="text-sm text-gray-500">
+                    {getLanguageFlag(sourceLanguage)} {getLanguageName(sourceLanguage)} → {getLanguageFlag(targetLanguage)} {getLanguageName(targetLanguage)}
                   </div>
                 </div>
-                
-                {isTranslating ? (
-                  <div className="h-96 flex items-center justify-center bg-gray-50 dark:bg-gray-800 rounded-lg">
-                    <div className="text-center space-y-4">
-                      <LoadingSpinner size="lg" />
-                      <p className="text-gray-600 dark:text-gray-400">
-                        Generating ISL translation...
-                      </p>
+
+                {/* Avatar Video */}
+                {avatarUrl && (
+                  <div className="bg-black rounded-lg overflow-hidden">
+                    <div className="relative">
+                      <video
+                        src={avatarUrl}
+                        className="w-full h-64 object-cover"
+                        controls
+                        onPlay={() => setIsPlaying(true)}
+                        onPause={() => setIsPlaying(false)}
+                      />
+                      <div className="absolute top-4 right-4 flex space-x-2">
+                        <button className="p-2 bg-black/50 rounded-lg text-white hover:bg-black/70 transition-colors">
+                          <Volume2 className="w-4 h-4" />
+                        </button>
+                        <button className="p-2 bg-black/50 rounded-lg text-white hover:bg-black/70 transition-colors">
+                          <Download className="w-4 h-4" />
+                        </button>
+                      </div>
                     </div>
                   </div>
-                ) : (
-                  <ISLAvatar3D 
-                    text={inputText} 
-                    isAnimating={isPlaying}
-                  />
                 )}
-              </div>
-            </Card>
-
-            {/* Translation Details */}
-            <Card>
-              <div className="space-y-4">
-                <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100">
-                  Translation Details
+              </>
+            ) : (
+              <div className="bg-gray-50 rounded-lg p-8 text-center">
+                <Languages className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+                <h3 className="text-lg font-medium text-gray-600 mb-2">
+                  Ready to Translate
                 </h3>
-                
-                {isTranslating ? (
-                  <div className="space-y-4">
-                    <div className="animate-pulse space-y-3">
-                      <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-3/4"></div>
-                      <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-1/2"></div>
-                      <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-5/6"></div>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <PulseLoader />
-                      <span className="text-sm text-gray-600 dark:text-gray-400">
-                        Processing translation...
-                      </span>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="space-y-4">
-                    <div className="p-4 bg-primary-50 dark:bg-primary-900/20 rounded-lg">
-                      <p className="text-primary-800 dark:text-primary-200 font-medium">
-                        {translatedText}
-                      </p>
-                    </div>
-                    
-                    <div className="grid grid-cols-2 gap-4 text-sm">
-                      <div>
-                        <span className="text-gray-500 dark:text-gray-400">Source:</span>
-                        <p className="font-medium text-gray-900 dark:text-gray-100">
-                          {languages.find(l => l.code === selectedLanguage)?.name}
-                        </p>
-                      </div>
-                      <div>
-                        <span className="text-gray-500 dark:text-gray-400">Target:</span>
-                        <p className="font-medium text-gray-900 dark:text-gray-100">
-                          Indian Sign Language
-                        </p>
-                      </div>
-                      <div>
-                        <span className="text-gray-500 dark:text-gray-400">Speed:</span>
-                        <p className="font-medium text-gray-900 dark:text-gray-100 capitalize">
-                          {translationSpeed}
-                        </p>
-                      </div>
-                      <div>
-                        <span className="text-gray-500 dark:text-gray-400">Duration:</span>
-                        <p className="font-medium text-gray-900 dark:text-gray-100">
-                          ~{Math.ceil(inputText.length / 10)}s
-                        </p>
-                      </div>
-                    </div>
-                    
-                    <div className="flex space-x-2">
-                      <Button size="sm" onClick={() => navigator.clipboard.writeText(translatedText)}>
-                        Copy Translation
-                      </Button>
-                      <Button variant="outline" size="sm">
-                        <Download className="h-4 w-4" />
-                        Export
-                      </Button>
-                    </div>
-                  </div>
-                )}
-              </div>
-            </Card>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Translation History */}
-      {history.length > 0 && (
-        <Card>
-          <div className="space-y-4">
-            <div className="flex items-center justify-between">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 flex items-center space-x-2">
-                <History className="h-5 w-5" />
-                <span>{t('translation.history')}</span>
-              </h3>
-              <Button variant="ghost" size="sm" onClick={() => setHistory([])}>
-                {t('translation.clear')}
-              </Button>
-            </div>
-            
-            <div className="space-y-3 max-h-80 overflow-y-auto">
-              {history.slice(-10).reverse().map((item, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  className="p-4 bg-gray-50 dark:bg-gray-700/50 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors cursor-pointer"
-                  onClick={() => setInputText(item.text)}
-                >
-                  <div className="flex items-start justify-between">
-                    <div className="flex-1 space-y-1">
-                      <p className="text-sm font-medium text-gray-900 dark:text-gray-100">
-                        {item.text}
-                      </p>
-                      <p className="text-xs text-gray-500 dark:text-gray-400">
-                        {item.translation}
-                      </p>
-                    </div>
-                    <div className="flex items-center space-x-2 ml-4">
-                      <span className="text-xs text-gray-400">
-                        {item.timestamp.toLocaleTimeString()}
-                      </span>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          navigator.clipboard.writeText(item.text);
-                        }}
-                        className="p-1"
-                      >
-                        <Copy className="h-3 w-3" />
-                      </Button>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </Card>
-      )}
-
-      {/* Learning Resources */}
-      <Card>
-        <div className="space-y-4">
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 flex items-center space-x-2">
-            <BookOpen className="h-5 w-5" />
-            <span>ISL Learning Resources</span>
-          </h3>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {[
-              { title: 'Basic Gestures', description: 'Learn fundamental hand movements', level: 'Beginner' },
-              { title: 'Common Phrases', description: 'Everyday conversation starters', level: 'Intermediate' },
-              { title: 'Advanced Grammar', description: 'Complex sentence structures', level: 'Advanced' },
-            ].map((resource, index) => (
-              <motion.div
-                key={index}
-                whileHover={{ scale: 1.02 }}
-                className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-primary-300 dark:hover:border-primary-600 transition-colors cursor-pointer"
-              >
-                <h4 className="font-medium text-gray-900 dark:text-gray-100 mb-1">
-                  {resource.title}
-                </h4>
-                <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
-                  {resource.description}
+                <p className="text-gray-500">
+                  Enter your text and click translate to see the result with avatar
                 </p>
-                <span className="inline-block px-2 py-1 bg-primary-100 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400 text-xs rounded-full">
-                  {resource.level}
-                </span>
-              </motion.div>
-            ))}
+              </div>
+            )}
           </div>
         </div>
-      </Card>
+
+        {/* History Panel */}
+        {showHistory && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="border-t border-gray-200 p-6"
+          >
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-semibold">Recent Translations</h3>
+              <button
+                onClick={handleExport}
+                className="flex items-center space-x-2 text-blue-600 hover:text-blue-700"
+              >
+                <FileText className="w-4 h-4" />
+                <span>Export</span>
+              </button>
+            </div>
+            <div className="space-y-3 max-h-64 overflow-y-auto">
+              {history.map(item => (
+                <div key={item.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                  <div className="flex-1">
+                    <div className="font-medium">{item.original_text}</div>
+                    <div className="text-sm text-gray-500">
+                      {JSON.parse(item.translated_content).translated}
+                    </div>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <button
+                      onClick={() => handleFavorite(item.id, false)}
+                      className="p-1 text-gray-400 hover:text-red-500"
+                    >
+                      <Heart className="w-4 h-4" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setText(item.original_text);
+                        setSourceLanguage(item.source_language);
+                        setTargetLanguage(item.target_language);
+                      }}
+                      className="p-1 text-gray-400 hover:text-blue-500"
+                    >
+                      <Star className="w-4 h-4" />
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </motion.div>
     </div>
   );
 };
+
+export default EnhancedTranslationTool;

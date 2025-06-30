@@ -301,3 +301,13 @@ CMD ["npm", "start"]
 - Disaster recovery procedures
 
 This document should be updated as new features are added or requirements change.
+
+## Next Steps
+
+1. **Start your dev server:**
+   ```
+   npm run dev
+   ```
+2. **Open your app in the browser.**
+3. **Try the “Sign in with Google” button.**
+   - You should be redirected to the dashboard after login.

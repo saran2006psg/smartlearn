@@ -1,8 +1,19 @@
-# VaaniPlus - Inclusive Educational Platform
+# SmartLearn - Educational Platform
 
-VaaniPlus is a comprehensive educational platform designed to provide inclusive learning experiences for students of all abilities, with support for multiple languages and accessibility features.
+A comprehensive educational platform built with React (Frontend) and Node.js/Express (Backend) with PostgreSQL database.
 
-## Features
+## 📖 Quick Links
+
+- **[Setup & Running Guide](./SETUP.md)** - Complete setup instructions
+- **[Improvement Roadmap](./IMPROVEMENT_ROADMAP.md)** - Development roadmap
+- **[Google OAuth Setup](./GOOGLE_OAUTH_SETUP.md)** - Authentication setup
+- **[API Keys Setup](./API_KEYS_SETUP.md)** - External service configuration
+
+## 🎯 Project Overview
+
+SmartLearn is an inclusive educational platform designed to provide learning experiences for students of all abilities, with support for multiple languages and accessibility features.
+
+### 🌟 Key Features
 
 - 🌐 **Multi-language Support**: Hindi, English, Gujarati, Tamil, Kannada, Bengali, and Urdu
 - 🎨 **Accessibility**: High-contrast themes and customizable font sizes
@@ -12,99 +23,157 @@ VaaniPlus is a comprehensive educational platform designed to provide inclusive 
 - 🔄 **Translation Tools**: Multi-language translation with ISL video support
 - 🔐 **Google Authentication**: Secure login with Google OAuth
 
-## Getting Started
+## 🏗️ Architecture
 
-### Prerequisites
+### Frontend (React + TypeScript)
+- **Framework**: React 18 with TypeScript
+- **Build Tool**: Vite
+- **Styling**: Tailwind CSS
+- **State Management**: Zustand
+- **Routing**: React Router
+- **Internationalization**: React i18next
+- **Animations**: Framer Motion
 
-- Node.js (v16 or higher)
-- npm or yarn
+### Backend (Node.js + Express)
+- **Runtime**: Node.js
+- **Framework**: Express.js
+- **Database**: PostgreSQL
+- **Authentication**: JWT + Google OAuth
+- **Security**: Helmet, CORS, Rate limiting
 
-### Installation
+### Database (PostgreSQL)
+- **Tables**: Users, Lessons, Progress, Translations, Activities
+- **Features**: UUID primary keys, JSONB for flexible data, Triggers for timestamps
 
-1. Clone the repository:
-```bash
-git clone <repository-url>
-cd sb1-qxapdo6s
-```
-
-2. Install dependencies:
-```bash
-npm install
-```
-
-3. Set up Google OAuth (see [Google OAuth Setup Guide](./GOOGLE_OAUTH_SETUP.md))
-
-4. Start the development server:
-```bash
-npm run dev
-```
-
-5. Open your browser and navigate to `http://localhost:5173`
-
-## Google Authentication Setup
-
-This application uses Google OAuth for secure authentication. Follow the detailed setup guide in [GOOGLE_OAUTH_SETUP.md](./GOOGLE_OAUTH_SETUP.md) to configure Google authentication.
-
-### Quick Setup Steps:
-
-1. Create a Google Cloud Project
-2. Enable Google+ API
-3. Configure OAuth consent screen
-4. Create OAuth 2.0 credentials
-5. Update the Client ID in `src/App.tsx`
-
-## Project Structure
+## 📁 Project Structure
 
 ```
-src/
-├── components/
-│   ├── auth/           # Authentication components
-│   ├── dashboard/      # Dashboard components
-│   ├── layout/         # Layout and navigation
-│   ├── lessons/        # Lesson-related components
-│   ├── translation/    # Translation tools
-│   ├── ui/            # Reusable UI components
-│   └── writing/       # Writing tools
-├── pages/             # Page components
-├── stores/            # State management (Zustand)
-├── types/             # TypeScript type definitions
-└── i18n/              # Internationalization
+smartlearn/
+├── src/                    # Frontend React application
+│   ├── components/         # React components
+│   │   ├── auth/          # Authentication components
+│   │   ├── dashboard/     # Dashboard components
+│   │   ├── layout/        # Layout and navigation
+│   │   ├── lessons/       # Lesson-related components
+│   │   ├── translation/   # Translation tools
+│   │   ├── ui/           # Reusable UI components
+│   │   └── writing/      # Writing tools
+│   ├── pages/             # Page components
+│   ├── services/          # API services
+│   ├── stores/            # State management (Zustand)
+│   ├── types/             # TypeScript types
+│   └── i18n/              # Internationalization
+├── backend/               # Backend Node.js application
+│   ├── config/            # Database configuration
+│   ├── routes/            # API routes
+│   ├── middleware/        # Express middleware
+│   └── server.js          # Main server file
+├── SETUP.md               # Setup and running instructions
+├── IMPROVEMENT_ROADMAP.md # Development roadmap
+└── README.md              # This file
 ```
 
-## Technologies Used
+## 🚀 Next Steps & Improvements
 
-- **React 18** - UI framework
-- **TypeScript** - Type safety
-- **Vite** - Build tool and dev server
-- **Tailwind CSS** - Styling
-- **Framer Motion** - Animations
-- **Zustand** - State management
-- **React Router** - Navigation
-- **React i18next** - Internationalization
-- **@react-oauth/google** - Google authentication
+### 🎯 Immediate Priorities (Next 2 Weeks)
 
-## Available Scripts
+1. **Create Sample Lesson Content**
+   - Add 5-10 sample lessons across categories
+   - Implement lesson viewer with video support
+   - Add interactive exercises and quizzes
 
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
-- `npm run lint` - Run ESLint
+2. **Enhance Authentication System**
+   - Add email/password authentication
+   - Implement password reset functionality
+   - Add user profile management
 
-## Contributing
+3. **Improve User Experience**
+   - Add loading states and error handling
+   - Enhance accessibility features
+   - Optimize mobile responsiveness
+
+### 📋 Complete Improvement Roadmap
+
+For a detailed improvement plan with 6 phases covering:
+- Core functionality enhancements
+- UI/UX improvements
+- Technical optimizations
+- Advanced features (AI/ML)
+- Platform expansion
+- Production deployment
+
+**📖 See:** [IMPROVEMENT_ROADMAP.md](./IMPROVEMENT_ROADMAP.md)
+
+### 🔥 Critical Next Actions
+
+| Task | Priority | Timeline |
+|------|----------|----------|
+| Add sample lesson content | 🔴 Critical | Week 1 |
+| Implement email authentication | 🔴 Critical | Week 1 |
+| Add progress tracking | 🔴 Critical | Week 2 |
+| Mobile optimization | 🟡 High | Week 2 |
+| Accessibility improvements | 🟡 High | Week 2 |
+
+## 🔐 Authentication
+
+The application supports:
+- Google OAuth (optional)
+- JWT-based authentication
+- Session management
+
+## 📚 API Documentation
+
+### Main Endpoints
+
+- `GET /api/health` - Health check
+- `POST /api/auth/google` - Google OAuth login
+- `GET /api/lessons` - Get lessons
+- `POST /api/translations/translate` - Translate text
+- `GET /api/users/profile` - Get user profile
+- `GET /api/progress/overview` - Get learning progress
+
+## 🛠️ Development
+
+### Adding New Features
+
+1. **Backend API Endpoints:**
+   - Add routes in `backend/routes/`
+   - Update database schema if needed
+   - Test with API tools (Postman, etc.)
+
+2. **Frontend Components:**
+   - Add components in `src/components/`
+   - Add pages in `src/pages/`
+   - Update routing as needed
+
+### Environment Variables
+
+Make sure to update the following in your `.env` files:
+- Database password
+- JWT secret
+- Google OAuth credentials (if using)
+- API URLs
+
+## 🤝 Contributing
 
 1. Fork the repository
 2. Create a feature branch
 3. Make your changes
-4. Add tests if applicable
+4. Test thoroughly
 5. Submit a pull request
 
-## License
+## 📄 License
 
 This project is licensed under the MIT License.
 
-## Support
+## 🆘 Support
 
-For support and questions:
-- Check the [Google OAuth Setup Guide](./GOOGLE_OAUTH_SETUP.md) for authentication issues
-- Review the troubleshooting section in the setup guide
-- Open an issue on GitHub for bugs or feature requests
+If you encounter any issues:
+1. Check the [Setup Guide](./SETUP.md) troubleshooting section
+2. Verify all prerequisites are installed
+3. Check the logs in both terminal windows
+4. Ensure all environment variables are set correctly
+
+---
+
+**Happy Learning! 🎓**

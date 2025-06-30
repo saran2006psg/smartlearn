@@ -14,8 +14,7 @@ import {
   Sun,
   Moon,
   Contrast,
-  Type,
-  Volume2
+  Type
 } from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import { Input } from '../components/ui/Input';
@@ -73,8 +72,6 @@ export const Profile: React.FC = () => {
       case 'high-contrast': return <Contrast className="h-5 w-5" />;
     }
   };
-
-  const currentLanguage = languages.find(lang => lang.code === language);
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-8">
@@ -259,7 +256,11 @@ export const Profile: React.FC = () => {
                       {fontSizes.map((size) => (
                         <button
                           key={size.value}
-                          onClick={() => updateUser({ preferences: { ...user?.preferences, fontSize: size.value as any } })}
+                          onClick={() => updateUser({ preferences: { 
+                            language: user?.preferences.language || 'en',
+                            theme: user?.preferences.theme || 'light',
+                            fontSize: size.value as 'small' | 'medium' | 'large'
+                          } })}
                           className={`p-2 rounded-lg border text-sm font-medium transition-colors ${
                             user?.preferences.fontSize === size.value
                               ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400'

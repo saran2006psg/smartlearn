@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { Languages, Zap, Users, Globe, Brain, Video, Mic } from 'lucide-react';
-import { EnhancedTranslationTool } from '../components/translation/EnhancedTranslationTool';
+import EnhancedTranslationTool from '../components/translation/EnhancedTranslationTool';
 import { Card } from '../components/ui/Card';
 import { Badge } from '../components/ui/Badge';
 import { AnimatedBackground } from '../components/ui/AnimatedBackground';

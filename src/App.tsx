@@ -8,11 +8,16 @@ import { Translation } from './pages/Translation';
 import { Writing } from './pages/Writing';
 import { useThemeStore } from './stores/themeStore';
 import { useLanguageStore } from './stores/languageStore';
+import Login from './pages/Login';
+import { GoogleOAuthProvider } from '@react-oauth/google';
+import { useAuthStore } from './stores/authStore';
 import './i18n';
 
 function App() {
   const { theme } = useThemeStore();
   const { language, isRTL } = useLanguageStore();
+  const { isAuthenticated } = useAuthStore();
+  const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 
   useEffect(() => {
     // Apply theme to document
@@ -23,23 +28,29 @@ function App() {
     // Apply RTL direction
     root.dir = isRTL ? 'rtl' : 'ltr';
     root.lang = language;
+
+    // Set document title
+    document.title = 'SmartLearn - Inclusive Educational Platform';
   }, [theme, isRTL, language]);
 
   return (
-    <Router>
-      <div className="App">
-        <Routes>
-          <Route path="/" element={<Navigate to="/dashboard" replace />} />
-          <Route path="/" element={<Layout />}>
-            <Route path="dashboard" element={<Dashboard />} />
-            <Route path="lessons" element={<Lessons />} />
-            <Route path="progress" element={<Progress />} />
-            <Route path="translation" element={<Translation />} />
-            <Route path="writing" element={<Writing />} />
-          </Route>
-        </Routes>
-      </div>
-    </Router>
+    <GoogleOAuthProvider clientId={clientId}>
+      <Router>
+        <div className="App min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/" element={isAuthenticated ? <Navigate to="/dashboard" replace /> : <Navigate to="/login" replace />} />
+            <Route path="/" element={<Layout />}>
+              <Route path="dashboard" element={isAuthenticated ? <Dashboard /> : <Navigate to="/login" replace />} />
+              <Route path="lessons" element={isAuthenticated ? <Lessons /> : <Navigate to="/login" replace />} />
+              <Route path="progress" element={isAuthenticated ? <Progress /> : <Navigate to="/login" replace />} />
+              <Route path="translation" element={isAuthenticated ? <Translation /> : <Navigate to="/login" replace />} />
+              <Route path="writing" element={isAuthenticated ? <Writing /> : <Navigate to="/login" replace />} />
+            </Route>
+          </Routes>
+        </div>
+      </Router>
+    </GoogleOAuthProvider>
   );
 }
 

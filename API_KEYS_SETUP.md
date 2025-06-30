@@ -86,7 +86,7 @@ Create a `.env` file with these variables:
 
 ```env
 # Frontend Environment Variables
-VITE_GOOGLE_CLIENT_ID=your_google_client_id_here
+VITE_GOOGLE_CLIENT_ID=26523042977-lnjg7thulco3lhjiqmb1r9g6cvr9p9u1.apps.googleusercontent.com
 VITE_SUPABASE_URL=your_supabase_url
 VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
 VITE_OPENAI_API_KEY=your_openai_key (optional)
@@ -95,7 +95,7 @@ VITE_OPENAI_API_KEY=your_openai_key (optional)
 DATABASE_URL=postgresql://username:password@localhost:5432/vaaniplus
 REDIS_URL=redis://localhost:6379
 JWT_SECRET=your_super_secret_jwt_key
-GOOGLE_CLIENT_SECRET=your_google_client_secret
+GOOGLE_CLIENT_SECRET=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
 GOOGLE_APPLICATION_CREDENTIALS=path/to/google-credentials.json
 AWS_ACCESS_KEY_ID=your_aws_access_key
 AWS_SECRET_ACCESS_KEY=your_aws_secret_key
